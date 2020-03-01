@@ -1,4 +1,4 @@
-import './style.css';
+import '../src/pages/index.css';
 import UserInfo from './blocks/user-info/UserInfo';
 import API from './API';
 import FormValidator from './FormValidator';
