@@ -54,7 +54,7 @@ module.exports = {
         new webpack.DefinePlugin({
            'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
-        new WebpackMd5Has(),
+        new WebpackMd5Hash(),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
