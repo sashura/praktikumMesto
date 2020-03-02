@@ -12,7 +12,7 @@ export default class PopupNewCard {
         this.element.querySelector('.popup__close').addEventListener('click', this.close.bind(this));
         this.formValidator.setSubmitButtonState(this.form);
         this.element.addEventListener('input', () => this.formValidator.setSubmitButtonState(this.form));
-        this.form.addEventListener('submit', () => this.addNewCard(this.form), {once: true});
+        this.form.addEventListener('submit', () => this.addNewCard(this.form));
     }
     close() {
         this.element.classList.remove('popup_is-opened');
@@ -23,12 +23,13 @@ export default class PopupNewCard {
     }
     addNewCard(form) {
         this.form = form;
-        //event.preventDefault();
+        event.preventDefault();
         this.api.postCard(this.form.elements[1].value, this.form.elements[0].value)
-            .then(() => {
-                this.container.insertAdjacentElement('beforeend', this.additionClass.create(this.form.elements[1].value, this.form.elements[0].value));
-                this.close();
-                this.form.reset();
+           .then((data) => {
+            this.container.insertAdjacentElement('beforeend', this.additionClass.create(this.form.elements[1].value, this.form.elements[0].value)),
+               // this.container.insertAdjacentElement('beforeend', this.additionClass.create(this.form.elements[1].value, this.form.elements[0].value));
+                this.close(),
+                this.form.reset()
             });
     } 
 }
