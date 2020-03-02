@@ -1,6 +1,7 @@
 export default class Card {
-    constructor(api) {
+    constructor(api, popupImage) {
         this.api = api;
+        this.popupImage = popupImage;
     }
     create(linkValue, nameValue, idValue, likesValue) {
           
@@ -42,6 +43,14 @@ export default class Card {
 
         likeIcon.addEventListener('click', this.like.bind(this));
         deleteIcon.addEventListener('click', this.remove.bind(this));
+        image.addEventListener('click', () => {
+            const linkImage = String(image.style.backgroundImage);
+            const sourseImage = linkImage.slice(5, -2);
+            if (event.target.classList.contains('place-card__delete-icon')) {
+                return;
+            }
+            this.popupImage.popupBigImageOpen(sourseImage);
+        })
         return card;
     }
     like(event) {
@@ -56,4 +65,6 @@ export default class Card {
         this.api.delete(event.target.closest('.place-card').id);
         event.target.closest('.place-card').remove();
     }
+
+    
 }
