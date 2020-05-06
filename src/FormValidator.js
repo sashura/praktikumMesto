@@ -33,11 +33,11 @@ export default class FormValidator {
     setSubmitButtonState(form) {
         this.form = form;
         const popupButton = this.form.querySelector('.popup__button');
-        if (formValidator.checkInputValidity(this.form) === Array.from(this.form.elements).length) {
+        if (this.checkInputValidity(this.form) === Array.from(this.form.elements).length) {
             popupButton.classList.add('popup__button_active');
             popupButton.removeAttribute('disabled');
             return;
-        } else if (formValidator.checkInputValidity(this.form) !== Array.from(this.form.elements).length){
+        } else if (this.checkInputValidity(this.form) !== Array.from(this.form.elements).length){
             popupButton.classList.remove('popup__button_active');
             popupButton.setAttribute('disabled', '');
         }

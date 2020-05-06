@@ -1,4 +1,4 @@
-import './style.css';
+import '../src/pages/index.css';
 import UserInfo from './blocks/user-info/UserInfo';
 import API from './API';
 import FormValidator from './FormValidator';
@@ -20,8 +20,9 @@ const container = document.querySelector('.places-list');
 const getPlaceCardImages = () => document.querySelectorAll('.place-card__image');
 const userAvatar = document.querySelector('.user-info__photo');
 const api = new API(authorization);
-const card = new Card(api);
 const popupImage = new PopupImage(document.querySelector('.popup__bigimage'));
+const card = new Card(API, popupImage);
+
 const cardList = new CardList(container, card, api);
 const formValidator = new FormValidator();
 const userInfo = new UserInfo(api,formValidator);
@@ -41,7 +42,7 @@ userAvatar.addEventListener('click', function () {
     new PopupAvatar(document.querySelector('.popup__avatar'), api, formValidator, userInfo).open()
 });
 
-getPlaceCardImages().forEach(function (image) {
+/*getPlaceCardImages().forEach(function (image) {
     const linkImage = String(image.style.backgroundImage);
     const sourseImage = linkImage.slice(5, -2);
     image.addEventListener('click', function () {
@@ -51,5 +52,5 @@ getPlaceCardImages().forEach(function (image) {
         popupImage.popupBigImageOpen(sourseImage);
     })
 });
-
+*/
 
